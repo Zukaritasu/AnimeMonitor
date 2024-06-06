@@ -1,0 +1,7 @@
+/.vs
+/bin
+/obj
+/DownloadManager/dist
+/DownloadManager/node_modules
+/DownloadManager/reports
+/DownloadManager/ndservc.exe

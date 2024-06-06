@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 
 namespace AnimeMonitor.API.Jimov {
     public class JEpisode {
-        public string[] Servers  { get; set; }
-        public string   ImageUrl { get; set; }
-        public string   Url      { get; set; }
-        public string   Name     { get; set; }
-        public UInt32   Number   { get; set; }
+        public string[] Servers  { get; private set; }
+        public string   ImageUrl { get; private set; }
+        public string   Url      { get; private set; }
+        public string   Name     { get; private set; }
+        public UInt32   Number   { get; private set; }
+
+        private EpisodeUrl episodeUrl = null;
 
         public override bool Equals(object obj) {
             if (obj == null || GetType() != obj.GetType()) {
@@ -47,6 +49,12 @@ namespace AnimeMonitor.API.Jimov {
                 hash = hash * 23 + Number.GetHashCode();
                 return hash;
             }
+        }
+
+        public EpisodeUrl ToEpisodeUrl() {
+            if (episodeUrl == null)
+                episodeUrl = new EpisodeUrl(Url);
+            return episodeUrl;
         }
 
         public override string ToString() {
